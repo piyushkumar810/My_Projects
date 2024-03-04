@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    #drag-drop-button {
+      padding: 10px;
+      background-color: #3498db;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #drop-zone {
+      border: 2px dashed #3498db;
+      border-radius: 5px;
+      padding: 20px;
+      margin-top: 20px;
+    }
+  </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const dragDropButton = document.getElementById('drag-drop-button');
+      const dropZone = document.getElementById('drop-zone');
+
+      // Prevent default drag behaviors
+      ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+        dropZone.addEventListener(eventName, preventDefaults, false);
+      });
+
+      // Highlight drop zone when item is dragged over it
+      ['dragenter', 'dragover'].forEach(eventName => {
+        dropZone.addEventListener(eventName, highlight, false);
+      });
+
+      ['dragleave', 'drop'].forEach(eventName => {
+        dropZone.addEventListener(eventName, unhighlight, false);
+      });
+
+      // Handle dropped files
+      dropZone.addEventListener('drop', handleDrop, false);
+
+      function preventDefaults(e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+
+      function highlight() {
+        dropZone.classList.add('highlight');
+      }
+
+      function unhighlight() {
+        dropZone.classList.remove('highlight');
+      }
+
+      function handleDrop(e) {
+        const dt = e.dataTransfer;
+        const files = dt.files;
+
+        handleFiles(files);
+      }
+
+      function handleFiles(files) {
+        // Handle dropped files here
+        // For example, you can loop through files and do something with them
+
+        for (const file of files) {
+          console.log('File Name:', file.name);
+          console.log('File Size:', file.size);
+          console.log('File Type:', file.type);
+        }
+      }
+    });
+  </script>
+</head>
+<body>
+  <button id="drag-drop-button">Drag & Drop Files</button>
+  <div id="drop-zone">Drop files here</div>
+</body>
+</html>
