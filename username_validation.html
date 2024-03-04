@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>user name validation</title>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body{
+            background-color: #c2e8ec;
+            height: 100vh;
+            width: 100%;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        form{
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        div{
+            border: 2px solid cornsilk;
+            background-color: #e2fee6;
+        }
+
+    </style>
+</head>
+<body>
+    <form onsubmit="return myfun()">
+       <div>
+        USERNAME : <input type="text" id="user_name" value="" placeholder="Enter username here">
+        <!-- used span insted of p tag because p by-default have line breake and span will come on the same line -->
+        <span id="message" style="color: red;"> </span>
+
+        <br><br>
+
+        <input type="submit" value="submit">
+       </div>
+    </form>
+
+    <!-- writting java script code -->
+    <script>
+        function myfun()
+        {
+
+            let correct_username_syntax=/^[A-Za-z]+$/;
+            let a=document.getElementById("user_name").value;
+
+            if(a === "")
+            {
+                document.getElementById("message").innerHTML=" ** please fill username";
+                return false;
+            }
+
+            if(a.length < 3 || a.length > 20)
+            {
+                document.getElementById("message").innerHTML=" **user name must be greater than 3 and less than 20";
+                return false;
+            }
+            if(a == correct_username_syntax)
+            {
+                return true;
+            }
+            else{
+                document.getElementById('message').innerHTML="** only alpahbest are allowed";
+                return false;
+            }
+        }
+    </script>
+</body>
+</html> 
+
