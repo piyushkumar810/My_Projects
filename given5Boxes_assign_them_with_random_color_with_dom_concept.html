@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            display: flex;
+            gap: 10px;
+        }
+        .box{
+            height: 100px;
+            width: 100px;
+            border: 2px solid black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box">1</div>
+        <div class="box">2</div>
+        <div class="box">3</div>
+        <div class="box">4</div>
+        <div class="box">5</div>
+    </div>
+
+    <script>
+
+        // ----------------------------sara boxes ko ek baar mai pick karna hai
+
+        // -----------------this children property willl be useful when boxes class name is not same
+        let boxes1=document.querySelector(".container").children
+        // console.log(boxes1)
+
+        // sara box htl collection ki form mai boxes k pass aa gaya
+
+        // let boxes=document.getElementsByClassName("box")
+        console.log(boxes1);
+
+
+        function getrandomcolor()
+        {
+            let val1="0123456789abcdef"
+            let val2="#"
+
+            for(let i=0;i<6;i++)
+            {
+                val2 = val2 + val1[Math.floor(Math.random() * 16)];
+            }
+            return val2;
+           
+            // let val1=Math.ceil(0+Math.random()* 255);
+            // let val2=Math.ceil(0+Math.random()* 255);
+            // let val3=Math.ceil(0+Math.random()* 255);
+
+            // return `rgb(${val1}, ${val2}, ${val3})`;
+        }
+        // ye by-default html collection ban gaya tho hum isme direct foreach method nhi laga sakteai 
+        Array.from(boxes1).forEach(e => {
+            e.style.backgroundColor = getrandomcolor();
+            e.style.color = getrandomcolor();
+        });
+
+        
+    </script>
+</body>
+</html>
