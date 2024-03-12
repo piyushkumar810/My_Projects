@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Api Calling</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+        body{
+            height: 100vh;
+            width: 100%;
+            background-image: url(love2.jpg);
+            position: fixed;     
+            /*  position fixed --content k itna he border le liga */
+            display: flex;
+            /* justify-content: center; */
+            align-items: center;
+        }
+        .lovecontainer{
+            max-width: 23%;
+            border: 2px solid black;
+            padding: 20px 30px;
+            margin: 20px;
+            display: flex;
+            flex-direction: column;
+            row-gap: 10px;
+            border-radius: 30px;
+            background-color: rgba(249, 126, 136, 0.463);
+            
+        }
+        h2{
+            font-size: 25px;
+            font-family: 'Times New Roman', Times, serif;
+            font-style: italic;
+            text-shadow: 4px 6px 8px red;
+            padding: 0 30px 0 30px;
+        }
+
+        input{
+            border: 1px solid black;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        
+        .btn{
+            display: flex;
+            justify-content: space-between;
+            padding-top: 20px;
+        }
+        button{
+            height: 40px;
+            width: 80px;
+            border-radius: 30px;
+            color: red;
+            font-size: 13px;
+            font-family: 'Times New Roman', Times, serif;
+            font-weight: 600;
+            text-transform: uppercase;
+            transition: all ease;
+        }
+        button:hover{
+            background-color: rgb(250, 99, 99);
+            color: aliceblue;
+        }
+
+        .img {
+            height: 100%;
+            width: 80%;
+            border: 1px solid black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: 20px;
+            cursor: pointer;
+            background-size: cover;
+        }
+
+        /* ----------------------for 75% part */
+
+        .dynamic-box{
+            height: 100vh;
+            width: 75%;
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            gap: 10px;
+            flex-wrap: wrap;
+            /* border: 2px solid red; */
+        }
+
+        .box{
+            height: 300px;
+            width: 250px;
+            border: 2px solid rgb(253, 136, 136);
+            padding: 10px;
+            border-radius: 15px;
+        }
+
+        ul li .dynamic-img{
+            border: 1px solid black;
+            display: inline-block;
+            height: 150px;
+            width: 150px;
+            margin-left: 30px;
+            border-radius: 5px;
+            /* z-index: 5; */
+        }
+        ul li{
+            display: flex;
+            flex-direction: column;
+            row-gap: 10px;
+        }
+        ul li i{
+            font-weight: 700;
+            font-style: italic;
+        }
+
+        textarea{
+            border-radius: 5px;
+            /* background: ; */
+            backdrop-filter: blur(3px);
+            background: transparent;
+            resize: none;
+            overflow: hidden;
+            font-style: italic;
+            /* font-family: Arial, Helvetica, sans-serif; */
+            font-weight: 600;
+        }
+        textarea::placeholder{
+            font-style: italic;
+            font-weight: 700;
+        }
+        #yourname{
+            text-transform: capitalize;
+        }
+    </style>
+</head>
+<body>
+    <div class="lovecontainer">
+
+        <h2>Love Calculator</h2>
+        <hr>
+
+        <img src="hand.jpg" alt="random image" class="img">
+
+        <h3>First Name </h3>
+        <input type="text" value="" placeholder="enter your first name" id="getfname">
+
+        <h3>Last Name</h3>
+        <input type="text" value="" placeholder="enter your last name" id="getlname">
+
+        <div class="btn">
+            <button id="submit-btn">submit</button>
+            <button onclick="clear-btn" id="cancle-btn">cancel</button>
+        </div>
+    </div>
+
+    <ul class="dynamic-box">
+
+        <!-- <li class="box">
+            <img src="love1.jpg" alt="image" class="dynamic-img">
+            
+            <h3 id="yourname">name: </h3>
+        
+           
+            <i id="percent">Percentage: </i>
+        
+            
+            <textarea name=""  id="final-msg"  disabled="disabled">
+            </textarea>
+        </li> -->
+   
+    </ul>
+</body>
+
+<script>
+
+    let FirstName=document.querySelector("#getfname");
+    let LastName=document.querySelector("#getlname");
+
+    // let actualname=document.querySelector("#yourname");
+    // let pcent=document.querySelector("#percent");
+
+    // let final_msg=document.querySelector("#final-msg")
+    let submitbtn=document.querySelector("#submit-btn");
+
+    // ---------------------------------------dynamic box
+    var imageUrls = [
+            "love4.jpg",
+            "love1.jpg",
+            "love2.jpg",
+            "love3.jpg",
+            "love4.jpg",
+            "hand.jpg"
+        ];
+        
+    let i=0;
+    
+    submitbtn.onclick=async(e)=>
+    {
+
+        // i++
+        console.log(i);
+        let ParentBox=document.querySelector("ul");
+        console.log(ParentBox);
+        let DynamicList=document.createElement("li");
+        let DynamicImage=document.createElement("img");
+        console.log(DynamicImage);
+        let DynamicHeading=document.createElement("h3");
+        console.log(DynamicHeading);
+        let DynamicItalic=document.createElement("i");
+        console.log(DynamicItalic);
+        let DynamicTextarea=document.createElement("textarea");
+        console.log(DynamicTextarea);
+        console.log(DynamicList);
+        console.log("reached")
+
+
+        ParentBox.append(DynamicList);
+        DynamicList.classList.add("box");
+        DynamicList.classList.add(`box${i}`);
+        console.log("-----------------------ho raha hai")
+
+        DynamicList.append(DynamicImage);
+        DynamicImage.classList.add("dynamic-img");
+        DynamicImage.classList.add(`dynamic-img${i}`);
+        // DynamicImage.src="love1.jpg"
+
+    
+        DynamicImage.src=imageUrls[i];
+        i++
+
+   
+
+        DynamicImage.after(DynamicHeading);
+        DynamicHeading.setAttribute("id","yourname");
+        DynamicHeading.setAttribute(`class`,`yourname${i}`);
+
+        DynamicHeading.after(DynamicItalic);
+        DynamicItalic.setAttribute("id","percent");
+        DynamicItalic.setAttribute(`class`,`percent${i}`);
+
+        DynamicItalic.after(DynamicTextarea);
+        DynamicTextarea.setAttribute("id","final-msg");
+        DynamicTextarea.setAttribute(`class`,`final-msg${i}`);
+        DynamicTextarea.setAttribute("disabled","disabled");
+
+        let actualname=document.querySelector(`.yourname${i}`);
+        console.log(actualname)
+        console.log("printed")
+        let pcent=document.querySelector(`.percent${i}`);
+        let final_msg=document.querySelector(`.final-msg${i}`)
+
+
+      
+        let firstname=FirstName.value;
+        console.log(firstname);
+
+        let lastname=LastName.value;
+        console.log(lastname);
+
+    const url = `https://love-calculator.p.rapidapi.com/getPercentage?sname=${lastname}&fname=${firstname}`;
+    const options = {
+	method: 'GET',
+	headers: {
+		'X-RapidAPI-Key': 'f22fcd5367mshc04d3c0bd27c053p1f43b9jsn4023dfae2e49',
+		'X-RapidAPI-Host': 'love-calculator.p.rapidapi.com'
+	}
+}
+
+
+try {
+	const response = await fetch(url, options);
+	const result = await response.json();
+	console.log(result);
+
+    const fullname=result.fname+" "+result.sname;
+    console.log(fullname);
+
+    let SuccessPercent=result.percentage;
+    console.log(SuccessPercent);
+    let Message=result.result;
+    console.log(Message);
+
+    actualname.innerText="Name : "+fullname;
+    pcent.innerText="There is "+SuccessPercent+"% Chance of getting Success.";
+    final_msg.innerText=Message;
+
+    // pcent.innerText=SuccessPercent;
+
+
+} catch (error) {
+	console.log(error);
+}
+    }
+</script>
+</html>
