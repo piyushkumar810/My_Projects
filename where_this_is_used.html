@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>use place of this</title>
+</head>
+<body>
+    <script>
+        //--------------------------- inside object this is refer to current context (context means block)
+       let obj={
+        username:"raj",
+        roll:28,
+        course:"full stack web development",
+
+        myfun:function(){
+            // console.log(`${username}, welcome here`) --> this will tell you user name is not defiend
+            console.log(`${this.username}, welcome here`)
+
+            console.log(this)
+        }
+       }
+
+       obj.myfun()
+       obj.username="sam"
+       obj.myfun();
+
+
+
+    //  ---------------------------  but when we use this inside normal function
+    function myfunction(){
+        let username1="ronald"
+        console.log(this)
+        // console.log(this) --> this well refer to object global
+
+        console.log(this.username1)
+        // this willl give you undefined this is not refering to current context (if refered the it has to give ronald)
+    }
+    myfunction();
+
+
+    // -----------------------------in case of arrow function
+    const fun=()=>{
+        let uaername2="hitesh"
+        console.log(`${this.username2}, welcome here`)
+        console.log(this)
+    }
+
+    fun();
+    </script>
+</body>
+</html>
