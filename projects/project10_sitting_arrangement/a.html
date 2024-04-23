@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Classroom Seating Arrangement</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 20px;
+      }
+      #classroomContainer {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-evenly;
+      }
+      .classroom {
+        border: 2px solid #4caf50;
+        border-radius: 10px;
+        background-color: #f9f9f9;
+        padding: 20px;
+        margin-bottom: 30px;
+        position: relative;
+        width: 35vw;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2em;
+      }
+      .classroom-number {
+        position: absolute;
+        top: -25px;
+        left: 10px;
+        font-size: 24px;
+        font-weight: bold;
+        color: #4caf50;
+        width: 35vw;
+        display: flex;
+        /* Green color */
+      }
+      .row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 15px;
+      }
+      .column {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        flex: 1;
+        padding: 10px;
+        background-color: #fff; /* White background */
+      }
+      .student {
+        margin-bottom: 8px;
+        padding: 5px;
+        border-radius: 5px;
+      }
+      .math {
+        background-color: #3498db; /* Blue */
+        color: #fff;
+      }
+      .biology {
+        background-color: #9b59b6; /* Purple */
+        color: #fff;
+      }
+      /* Add more styles for other subjects as needed */
+    </style>
+  </head>
+  <body>
+    <div id="classroomContainer"></div>
+
+    <script>
+      // Function to generate unique student IDs
+      function generateUniqueId(subject, index, room) {
+        return `${subject}S${index.toString().padStart(3, "0")} - Room ${room}`;
+      }
+
+      // Function to generate subjects for a classroom (two unique subjects)
+      function generateSubjects() {
+        const subjects = ["Math", "Biology"]; // Add more subjects as needed
+        return subjects;
+      }
+
+      // Function to generate classroom seating arrangement
+      function generateSeatingArrangement(numStudents) {
+        const numClassrooms = Math.ceil(numStudents / 40); // 40 students per classroom
+        let studentCount = {
+          Math: 0,
+          Biology: 0,
+        };
+
+        // Generate seating arrangement for each classroom
+        for (let i = 0; i < numClassrooms; i++) {
+          const classroom = document.createElement("div");
+          classroom.classList.add("classroom");
+          const classroomNumber = document.createElement("div");
+          classroomNumber.classList.add("classroom-number");
+          classroomNumber.textContent = `Classroom ${i + 1}`;
+          classroom.appendChild(classroomNumber);
+
+          const [subject1, subject2] = generateSubjects(); // Generate subjects for this classroom
+
+          const leftColumn = document.createElement("div");
+          leftColumn.classList.add("column");
+          const rightColumn = document.createElement("div");
+          rightColumn.classList.add("column");
+
+          const students = [];
+
+          // Generate students with alternating subjects
+          for (let j = 0; j < 20; j++) {
+            const subject = j < 10 ? subject1 : subject2;
+            const studentId = ++studentCount[subject];
+            const student = {
+              id: generateUniqueId(subject, studentId, i + 1),
+              subject: subject,
+            };
+            students.push(student);
+          }
+
+          // Assign students to columns based on subjects
+          students.forEach((student, index) => {
+            const studentElement = document.createElement("div");
+            studentElement.classList.add(
+              "student",
+              student.subject.toLowerCase()
+            );
+            studentElement.textContent = `ID: ${student.id}, Subject: ${student.subject}`;
+            if (index < 10) {
+              leftColumn.appendChild(studentElement);
+            } else {
+              rightColumn.appendChild(studentElement);
+            }
+          });
+
+          classroom.appendChild(leftColumn);
+          classroom.appendChild(rightColumn);
+          document.getElementById("classroomContainer").appendChild(classroom);
+        }
+      }
+
+      // Generate seating arrangement for 800 students (20 classrooms)
+      generateSeatingArrangement(1200);
+    </script>
+  </body>
+</html>
+
+
+<!-- tell me the code
+suppose i have 500-600 students in my database and  i want my output as:-
+1) i want dynamic classes (the no of classroom is dynamic according to below requriement)
+2) in each classroom their shall be 60 students.
+3) and their will be 2 or 3 columns and each columns have 8-10 rows according to need (dynamically).
+4) there will be different subjects.
+5) those student who sit together in same row must not have same subject.
+6)  -->

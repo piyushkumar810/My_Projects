@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .root {
+        --positionBottom: 14px;
+      }
+      body {
+        background: url("Background.jpg") no-repeat;
+        background-size: auto;
+        background-position: top;
+        background-color: #0be2fe;
+        /* height: 135vh; */
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: math;
+      }
+      ul {
+        width: 98vw;
+        border-radius: 7px;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        gap: 2.6em;
+        overflow: hidden;
+        padding: 20px;
+        position: absolute;
+        top: 0px;
+      }
+      ul li {
+        border-radius: 5px;
+        max-height: 392px;
+        width: 323px;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        justify-content: center;
+        align-items: flex-start;
+        border: 1px solid black;
+        color: white;
+        background: rgba(255, 255, 255, 0.23);
+        backdrop-filter: blur(10px);
+        overflow-y: auto;
+        overflow-x: hidden;
+      }
+      ul li > * {
+        position: relative;
+        top: -7px;
+      }
+      ul li img {
+        height: 32%;
+        width: 100%;
+        left: 0;
+        top: 0;
+        margin: 0px;
+        border-radius: 6px;
+        transition-duration: 0.2s;
+        object-fit: cover;
+      }
+      ul li img:hover {
+        transform: scale(1.1);
+        cursor: pointer;
+      }
+      ul li h2 {
+        display: flex;
+        flex-wrap: wrap;
+        /* color: orangered; */
+        top: -5px;
+        font-weight: 700;
+        text-shadow: -3px 0px 7px green;
+        text-transform: capitalize;
+        width: 100%;
+      }
+      ul li h3 {
+        display: flex;
+        flex-wrap: wrap;
+      }
+      ul li b {
+        font-size: 14px;
+        width: 100%;
+        color: black;
+      }
+      ul li p {
+        display: flex;
+        flex-wrap: wrap;
+        font-size: 13px;
+        background: transparent;
+        backdrop-filter: blur(10px);
+        border-radius: 5px;
+        position: relative;
+        /* top: 11px; */
+        width: 100%;
+        max-height: 35%;
+        padding: 2px;
+      }
+      ul li a {
+        text-decoration: none;
+        color: white;
+        transition-duration: 0.4s;
+        display: flex;
+        margin: auto;
+        border: 1px solid black;
+        background: rgba(0, 0, 0, 0.26);
+        height: 1.6em;
+        border-radius: 4px;
+        position: relative;
+        /* top: 9px; */
+        align-items: center;
+        justify-content: center;
+        padding: 4px;
+        min-width: 200px;
+        min-height: 27px;
+        font-size: 13px;
+        z-index: 2;
+      }
+      ul li a:hover {
+        color: black;
+        background-color: white;
+        transform: scale(1.1);
+      }
+      ul li i {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        width: 100%;
+        font-size: 12px;
+        bottom: 4px;
+        margin: 0;
+        text-transform: capitalize;
+        font-weight: bold;
+        color: black;
+      }
+      ul li span {
+        text-transform: uppercase;
+        color: black;
+        font-size: 13px;
+      }
+      .Screen-Loader {
+        height: 100vh;
+        width: 98vw;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.425);
+        backdrop-filter: blur(10px);
+        position: absolute;
+        top: 0px;
+        z-index: 10;
+        /* display: none; */
+      }
+      .loader {
+        margin: auto;
+        border: 10px solid #eaf0f6;
+        border-radius: 50%;
+        border-top: 10px solid black;
+        width: 200px;
+        height: 200px;
+        animation: spinner 1.5s ease-in-out infinite;
+      }
+
+      @keyframes spinner {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="Screen-Loader">
+      <div class="loader"></div>
+    </div>
+
+    <ul>
+      <!-- <li>
+        <img src="Lion.jpg" alt="" />
+        <h2>Country : India</h2>
+        <h3>Category : Sports</h3>
+        <b
+          >Title : Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          Earum incidunt nesciunt neque, cum autem repudiandae?</b
+        >
+        <mark
+          >Description : On March 9th, 2024, Leo's natural charisma and
+          leadership shine brightly, enhancing vitality and confidence. A day to
+          stand in power, pursue passions, and inspire others. Stars highlight
+          balance, humility, teamwork, depth of connections, and openness in
+          relationships. Jupiter brings opportunities for growth, calculated
+          risks, and innovative ideas. Balance activity, rest, and self-care
+          practices for health.</mark
+        >
+        <a href="#">Click here for official Article</a>
+        <span>Publish Time : </span>
+        <i>Source : </i>
+      </li> -->
+    </ul>
+  </body>
+
+  <script>
+    let parent_list = document.querySelector("ul");
+    let Screen_Loader = document.querySelector(".Screen-Loader");
+    document.body.onload = () => {
+      (async function () {
+        try {
+          var url =
+            "https://newsdata.io/api/1/news?apikey=pub_39709d551eae249552e60aa7430f51c3e3f14&q=india&country=in&language=en&category=science";
+          let response = await fetch(url);
+          let data = await response.json();
+          console.log(data["results"]);
+          for (i = 0; i < data["results"].length; i++) {
+            // console.log(result["status"]);
+            // console.log(result["totalResults"])
+            // console.log(result.Object);
+
+            console.log(data.results[i]["image_url"]); //<img>
+            console.log(data.results[i]["country"][0]); //<h2>
+            console.log(data.results[i]["category"][0]); //<h3>
+            console.log(data.results[i]["title"]); //<b>
+            console.log(data.results[i]["description"]); //<mark>
+            console.log(data.results[i]["link"]); //<a>
+            console.log(data.results[i]["pubDate"]); //<i>
+            console.log(data.results[i]["source_id"]); //<span>
+
+            //Creating Dynamic Elements
+            let list_item = document.createElement("li");
+            parent_list.append(list_item);
+
+            let news_image = document.createElement("img");
+            list_item.append(news_image);
+            if (data.results[i]["image_url"] == null) {
+              news_image.src = "Image_Not_Available.jpg";
+            } else {
+              news_image.src = data.results[i]["image_url"];
+            }
+
+            let country_Name = document.createElement("h2");
+            news_image.after(country_Name);
+            country_Name.innerText =
+              "Country  :  " + data.results[i]["country"][0];
+
+            let category_Name = document.createElement("h3");
+            country_Name.after(category_Name);
+            category_Name.innerText =
+              "Category  :  " + data.results[i]["category"][0];
+
+            let title_Name = document.createElement("b");
+            category_Name.after(title_Name);
+            title_Name.innerText = "Title  :  " + data.results[i]["title"];
+
+            let news_description = document.createElement("p");
+            title_Name.after(news_description);
+            if (data.results[i]["description"] == null) {
+              news_description.innerText =
+                "Description : We are very Sorry for the inconveniece, Due to some technical issues we're unable to show you  the description right, if you want to see the description then you can visit to the official publisher by clicking on the above box";
+            } else {
+              news_description.innerText =
+                "Description  :  " + data.results[i]["description"];
+            }
+
+            let news_url = document.createElement("a");
+            news_description.after(news_url);
+            news_url.href = data.results[i]["link"];
+            news_url.innerText = "Click here for official Article";
+
+            let publish_date = document.createElement("i");
+            news_url.after(publish_date);
+            publish_date.innerText =
+              "Published Date and Time  :  " + data.results[i]["pubDate"];
+
+            let news_source = document.createElement("span");
+            publish_date.after(news_source);
+            news_source.innerText =
+              "Official Publisher  :  " + data.results[i]["source_id"];
+          }
+        } catch (e) {
+          alert("Some Error Occured");
+        }
+      })();
+      setTimeout(() => {
+        Screen_Loader.style.display = "none";
+      }, 5000);
+    };
+  </script>
+</html>

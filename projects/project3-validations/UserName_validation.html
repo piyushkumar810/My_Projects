@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>validation of username</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            background-color: cornsilk;
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container{
+            max-width: 60%;
+            border: 1px solid black;
+            height: 40px;
+            padding: 10px;
+        }
+        .form{
+            display: flex;
+            flex-direction: row;
+        }
+        input{
+            width: 60%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form>
+            <label>User Name</label>
+            <input type="text" placeholder="Enter Your UserName" id="username" autocomplete="off" value="">
+        </form>
+    </div>
+</body>
+<script>
+    let name=document.getElementById("username");
+    name.oninput=(e)=>{
+        // e.preventDefault();
+        // for(let i=0;i<name.value.length;i++)
+        // {
+
+        //     if((name.value[i].charCodeAt(0)<=122 && name.value[i].charCodeAt(0)>=97) || (name.value[i].charCodeAt(0)<=122 && name.value[i].charCodeAt(0)>=97))
+        //     {
+        //         console.log("Hello");
+        //         e.preventDefault();
+        //     }
+        // }
+
+        console.log(name.value)
+        if(name.value.length<5)
+        {
+            name.style.border="2px solid red";
+            name.style.outline="none";
+
+        }
+        else{
+            name.style.border="none";
+            name.style.outline="none";
+        }
+    }
+</script>
+</html>

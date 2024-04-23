@@ -1,0 +1,78 @@
+/* user agent property has removed */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+body{
+    width: 100vw;
+    height: 100vh;
+    background-color: #edf1fd;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+} 
+
+header{
+    display: flex;
+    justify-content: space-around;
+}
+.logo{
+    font-size: 18px;
+}
+nav ul{
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    font-weight: 500;
+}
+li{
+    text-decoration: none;
+    cursor: pointer;
+    align-items: center;
+}
+li:hover{
+    text-decoration: underline;
+    font-weight: 900;
+    color: gray;
+}
+a{
+    text-decoration: none;
+}
+
+nav{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+button{
+    background-color: rgba(18, 155, 155, 0.797);
+    padding: 4px 10px;
+    cursor: pointer;
+    border: 1ppx solid white;
+    border-radius: 6px;
+    color: #edf1fd;
+    text-transform: uppercase;
+    font-size: 15px;
+    font-weight: 600;
+    width: fit-content;
+}
+button:hover{
+    color: rgb(0, 12, 12);
+    background-color: #fff;
+    border: 1px solid black;
+}
+
+.serch-field{
+    display: flex;
+    gap: 35px;
+}
+input{
+    padding: 4px 10px;
+    font-size: 15px;
+}
