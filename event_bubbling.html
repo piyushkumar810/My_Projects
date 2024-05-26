@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    .container{
+        background-color: #f9bcbc;
+        margin: 14px;
+        padding: 14px;
+    }
+
+    .child-container{
+        background-color: #e5fda8;
+        margin: 14px;
+        padding: 14px;
+
+    }
+    .grand-child-container{
+        margin: 14px;
+        padding: 14px;
+        background-color: #7596f0;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <section class="child-container">
+            <div class="grand-child-container">
+                hello i am grand child
+            </div>
+        </section>
+    </div>
+
+
+    <script>
+        document.querySelector(".container").addEventListener("click", (e)=>{
+            alert("container was clicked")
+        });
+
+        document.querySelector(".child-container").addEventListener("click", (e)=>{
+            e.stopPropagation();
+            alert("child container was clicked")
+        });
+
+        document.querySelector(".grand-child-container").addEventListener("click", (e)=>{
+            e.stopPropagation();
+            alert("grand child container was clicked")
+        });
+    </script>
+</body>
+</html>
