@@ -112,13 +112,18 @@ const register = async(req,resp)=>{
 
         const userExist= user.findOne({email: email})
         
+        if(userExist){
+            return resp.status(400).json({msg:"email already exists"})
+        }
+
+
+        await user.create({username, email, phone, password})
         
-        
-
-
-
         // const data = req.body;
-        // resp.status(200).json({data});
+        resp.status(200).json({data});
+
+
+
     } catch (error) {
         resp.status(500).json("internal server error")
     }

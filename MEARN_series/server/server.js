@@ -7,7 +7,7 @@ const connectdb=require("./utils/db")
 
 app.use(express.json())
 
-const port=5000;
+const port=5010;
 
 app.use("", router)
 
