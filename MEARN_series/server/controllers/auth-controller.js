@@ -96,7 +96,7 @@ const home=async(req,resp)=>{
 // --------------------using post method
 const register = async(req,resp)=>{
     try {
-        console.log(req.body);
+        // console.log(req.body);
 
 
         // ------------------------------------some useful tips
@@ -110,7 +110,7 @@ const register = async(req,resp)=>{
 
         const {username, email, phone, password}= req.body;
 
-        const userExist= user.findOne({email: email})
+        const userExist= user.findOne({email:email})
         
         if(userExist){
             return resp.status(400).json({msg:"email already exists"})
