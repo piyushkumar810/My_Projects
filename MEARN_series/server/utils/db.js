@@ -8,9 +8,11 @@ const URI=process.env.MONGODB_URI;
 // ---------------------------------connecting database with handling risky code
 const connectdb=async()=>{
     try {
+
         await mongoose.connect(URI)
         console.log("database connected successful");
-    } catch (error) {
+    } 
+    catch (error) {
         console.log("database connected failed");
         process.exit(0);
     }
